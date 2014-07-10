@@ -14,6 +14,9 @@
 		56CA447C196F1B16002B67C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56CA447A196F1B16002B67C0 /* Main.storyboard */; };
 		56CA447E196F1B16002B67C0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56CA447D196F1B16002B67C0 /* Images.xcassets */; };
 		56CA448A196F1B16002B67C0 /* FaceSearchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CA4489196F1B16002B67C0 /* FaceSearchTests.m */; };
+		56CA449A196F1B47002B67C0 /* ChatRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CA4495196F1B47002B67C0 /* ChatRoomViewController.m */; };
+		56CA449B196F1B47002B67C0 /* ChatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CA4497196F1B47002B67C0 /* ChatsViewController.m */; };
+		56CA449C196F1B47002B67C0 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CA4499196F1B47002B67C0 /* MapViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +43,12 @@
 		56CA4483196F1B16002B67C0 /* FaceSearchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FaceSearchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		56CA4488196F1B16002B67C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		56CA4489196F1B16002B67C0 /* FaceSearchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FaceSearchTests.m; sourceTree = "<group>"; };
+		56CA4494196F1B47002B67C0 /* ChatRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatRoomViewController.h; sourceTree = "<group>"; };
+		56CA4495196F1B47002B67C0 /* ChatRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatRoomViewController.m; sourceTree = "<group>"; };
+		56CA4496196F1B47002B67C0 /* ChatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatsViewController.h; sourceTree = "<group>"; };
+		56CA4497196F1B47002B67C0 /* ChatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatsViewController.m; sourceTree = "<group>"; };
+		56CA4498196F1B47002B67C0 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		56CA4499196F1B47002B67C0 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +95,7 @@
 				56CA4477196F1B16002B67C0 /* ViewController.h */,
 				56CA4478196F1B16002B67C0 /* ViewController.m */,
 				56CA447A196F1B16002B67C0 /* Main.storyboard */,
+				56CA4493196F1B47002B67C0 /* ViewControllers */,
 				56CA447D196F1B16002B67C0 /* Images.xcassets */,
 				56CA4474196F1B16002B67C0 /* FaceSearch.xcdatamodeld */,
 				56CA446D196F1B16002B67C0 /* Supporting Files */,
@@ -117,6 +127,20 @@
 				56CA4488196F1B16002B67C0 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		56CA4493196F1B47002B67C0 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				56CA4494196F1B47002B67C0 /* ChatRoomViewController.h */,
+				56CA4495196F1B47002B67C0 /* ChatRoomViewController.m */,
+				56CA4496196F1B47002B67C0 /* ChatsViewController.h */,
+				56CA4497196F1B47002B67C0 /* ChatsViewController.m */,
+				56CA4498196F1B47002B67C0 /* MapViewController.h */,
+				56CA4499196F1B47002B67C0 /* MapViewController.m */,
+			);
+			name = ViewControllers;
+			path = ../../FaceFinder/FaceFinder/FaceFinder/ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,10 +242,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56CA449B196F1B47002B67C0 /* ChatsViewController.m in Sources */,
 				56CA4473196F1B16002B67C0 /* AppDelegate.m in Sources */,
 				56CA4476196F1B16002B67C0 /* FaceSearch.xcdatamodeld in Sources */,
 				56CA4479196F1B16002B67C0 /* ViewController.m in Sources */,
 				56CA4470196F1B16002B67C0 /* main.m in Sources */,
+				56CA449A196F1B47002B67C0 /* ChatRoomViewController.m in Sources */,
+				56CA449C196F1B47002B67C0 /* MapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
