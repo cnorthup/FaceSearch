@@ -10,13 +10,17 @@
 		56CA4470196F1B16002B67C0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CA446F196F1B16002B67C0 /* main.m */; };
 		56CA4473196F1B16002B67C0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CA4472196F1B16002B67C0 /* AppDelegate.m */; };
 		56CA4476196F1B16002B67C0 /* FaceSearch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 56CA4474196F1B16002B67C0 /* FaceSearch.xcdatamodeld */; };
-		56CA4479196F1B16002B67C0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CA4478196F1B16002B67C0 /* ViewController.m */; };
+		56CA4479196F1B16002B67C0 /* FriendRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CA4478196F1B16002B67C0 /* FriendRequestViewController.m */; };
 		56CA447C196F1B16002B67C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56CA447A196F1B16002B67C0 /* Main.storyboard */; };
 		56CA447E196F1B16002B67C0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56CA447D196F1B16002B67C0 /* Images.xcassets */; };
 		56CA448A196F1B16002B67C0 /* FaceSearchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CA4489196F1B16002B67C0 /* FaceSearchTests.m */; };
 		56CA449A196F1B47002B67C0 /* ChatRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CA4495196F1B47002B67C0 /* ChatRoomViewController.m */; };
 		56CA449B196F1B47002B67C0 /* ChatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CA4497196F1B47002B67C0 /* ChatsViewController.m */; };
 		56CA449C196F1B47002B67C0 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CA4499196F1B47002B67C0 /* MapViewController.m */; };
+		56CA449E196F1D9B002B67C0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56CA449D196F1D9B002B67C0 /* MapKit.framework */; };
+		56CA44A0196F1DA4002B67C0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56CA449F196F1DA4002B67C0 /* CoreData.framework */; };
+		56CA44A2196F1DB8002B67C0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56CA44A1196F1DB8002B67C0 /* UIKit.framework */; };
+		56CA44A4196F203E002B67C0 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CA44A3196F203E002B67C0 /* SettingsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,8 +40,8 @@
 		56CA4471196F1B16002B67C0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		56CA4472196F1B16002B67C0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		56CA4475196F1B16002B67C0 /* FaceSearch.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FaceSearch.xcdatamodel; sourceTree = "<group>"; };
-		56CA4477196F1B16002B67C0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		56CA4478196F1B16002B67C0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		56CA4477196F1B16002B67C0 /* FriendRequestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FriendRequestViewController.h; path = ../../../../FaceSearch/FaceSearch/FriendRequestViewController.h; sourceTree = "<group>"; };
+		56CA4478196F1B16002B67C0 /* FriendRequestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = FriendRequestViewController.m; path = ../../../../FaceSearch/FaceSearch/FriendRequestViewController.m; sourceTree = "<group>"; };
 		56CA447B196F1B16002B67C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		56CA447D196F1B16002B67C0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		56CA4483196F1B16002B67C0 /* FaceSearchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FaceSearchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,6 +53,11 @@
 		56CA4497196F1B47002B67C0 /* ChatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatsViewController.m; sourceTree = "<group>"; };
 		56CA4498196F1B47002B67C0 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		56CA4499196F1B47002B67C0 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		56CA449D196F1D9B002B67C0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		56CA449F196F1DA4002B67C0 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		56CA44A1196F1DB8002B67C0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		56CA44A3196F203E002B67C0 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		56CA44A5196F204D002B67C0 /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +65,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56CA44A2196F1DB8002B67C0 /* UIKit.framework in Frameworks */,
+				56CA44A0196F1DA4002B67C0 /* CoreData.framework in Frameworks */,
+				56CA449E196F1D9B002B67C0 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +87,9 @@
 				56CA446C196F1B16002B67C0 /* FaceSearch */,
 				56CA4486196F1B16002B67C0 /* FaceSearchTests */,
 				56CA446B196F1B16002B67C0 /* Products */,
+				56CA449F196F1DA4002B67C0 /* CoreData.framework */,
+				56CA449D196F1D9B002B67C0 /* MapKit.framework */,
+				56CA44A1196F1DB8002B67C0 /* UIKit.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -92,8 +107,6 @@
 			children = (
 				56CA4471196F1B16002B67C0 /* AppDelegate.h */,
 				56CA4472196F1B16002B67C0 /* AppDelegate.m */,
-				56CA4477196F1B16002B67C0 /* ViewController.h */,
-				56CA4478196F1B16002B67C0 /* ViewController.m */,
 				56CA447A196F1B16002B67C0 /* Main.storyboard */,
 				56CA4493196F1B47002B67C0 /* ViewControllers */,
 				56CA447D196F1B16002B67C0 /* Images.xcassets */,
@@ -132,12 +145,16 @@
 		56CA4493196F1B47002B67C0 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				56CA4494196F1B47002B67C0 /* ChatRoomViewController.h */,
-				56CA4495196F1B47002B67C0 /* ChatRoomViewController.m */,
 				56CA4496196F1B47002B67C0 /* ChatsViewController.h */,
 				56CA4497196F1B47002B67C0 /* ChatsViewController.m */,
+				56CA4494196F1B47002B67C0 /* ChatRoomViewController.h */,
+				56CA4495196F1B47002B67C0 /* ChatRoomViewController.m */,
+				56CA4477196F1B16002B67C0 /* FriendRequestViewController.h */,
+				56CA4478196F1B16002B67C0 /* FriendRequestViewController.m */,
 				56CA4498196F1B47002B67C0 /* MapViewController.h */,
 				56CA4499196F1B47002B67C0 /* MapViewController.m */,
+				56CA44A5196F204D002B67C0 /* SettingsViewController.h */,
+				56CA44A3196F203E002B67C0 /* SettingsViewController.m */,
 			);
 			name = ViewControllers;
 			path = ../../FaceFinder/FaceFinder/FaceFinder/ViewControllers;
@@ -245,7 +262,8 @@
 				56CA449B196F1B47002B67C0 /* ChatsViewController.m in Sources */,
 				56CA4473196F1B16002B67C0 /* AppDelegate.m in Sources */,
 				56CA4476196F1B16002B67C0 /* FaceSearch.xcdatamodeld in Sources */,
-				56CA4479196F1B16002B67C0 /* ViewController.m in Sources */,
+				56CA44A4196F203E002B67C0 /* SettingsViewController.m in Sources */,
+				56CA4479196F1B16002B67C0 /* FriendRequestViewController.m in Sources */,
 				56CA4470196F1B16002B67C0 /* main.m in Sources */,
 				56CA449A196F1B47002B67C0 /* ChatRoomViewController.m in Sources */,
 				56CA449C196F1B47002B67C0 /* MapViewController.m in Sources */,
