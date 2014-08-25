@@ -91,7 +91,7 @@
             </objects>
             <point key="canvasLocation" x="46.5" y="102"/>
         </scene>
-        <!--Map View Controller - Explore-->
+        <!--Map View Controller-->
         <scene sceneID="cTP-Xq-bC1">
             <objects>
                 <viewController id="rQz-Xq-bit" customClass="MapViewController" sceneMemberID="viewController">
@@ -126,14 +126,33 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Explore" id="ZCc-Cw-1Cn"/>
+                    <navigationItem key="navigationItem" id="vvs-bd-0iQ"/>
                     <connections>
                         <outlet property="myMapView" destination="SK2-qq-LDu" id="42p-bL-nah"/>
+                        <segue destination="wXW-4b-cbL" kind="show" id="LuJ-Lv-FEV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kcZ-A5-x8g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1350" y="-460.5"/>
+            <point key="canvasLocation" x="-552" y="-460.5"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="qkq-Lq-QST">
+            <objects>
+                <viewController id="wXW-4b-cbL" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GQR-ea-lnA"/>
+                        <viewControllerLayoutGuide type="bottom" id="hW4-HY-Y5d"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Nh3-KA-zhY">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A1t-iB-zte" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="46.5" y="-460.5"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="JVJ-oY-c6C">
@@ -146,7 +165,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="rQz-Xq-bit" kind="relationship" relationship="viewControllers" id="OiC-ru-0Yj"/>
+                        <segue destination="fng-xZ-KjT" kind="relationship" relationship="viewControllers" id="OiC-ru-0Yj"/>
                         <segue destination="WZ3-Qw-pTM" kind="relationship" relationship="viewControllers" id="IHn-H3-5p7"/>
                         <segue destination="vXZ-lx-hvc" kind="relationship" relationship="viewControllers" id="ePZ-5u-NqC"/>
                         <segue destination="Gom-pD-1bC" kind="relationship" relationship="viewControllers" id="gOt-z1-YS6"/>
@@ -175,7 +194,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1350" y="712.5"/>
+            <point key="canvasLocation" x="-1350" y="687"/>
         </scene>
         <!--Friend Request View Controller - Friend Requests-->
         <scene sceneID="L2d-wt-YIL">
@@ -195,7 +214,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zQG-Rq-jL7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1350" y="1263"/>
+            <point key="canvasLocation" x="-1350" y="1278"/>
         </scene>
         <!--View Controller - Settings-->
         <scene sceneID="Dce-MW-sHy">
@@ -235,6 +254,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uj5-N8-7HH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1350" y="102"/>
+        </scene>
+        <!--Navigation Controller - Explore-->
+        <scene sceneID="R4o-Ao-6cb">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fng-xZ-KjT" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Explore" id="ZCc-Cw-1Cn"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kuw-Xx-3ma">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="rQz-Xq-bit" kind="relationship" relationship="rootViewController" id="yiO-jw-VXf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jxe-aP-JLo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1350" y="-460.5"/>
         </scene>
     </scenes>
     <color key="tintColor" red="1" green="0.50217481019999999" blue="0.0020682545409999998" alpha="1" colorSpace="calibratedRGB"/>
