@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.21" systemVersion="14A261i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3gu-jQ-YSP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3gu-jQ-YSP">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.13"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
-        <!--Chats View Controller - Messages-->
+        <!--Messages-->
         <scene sceneID="ARh-Kl-3ir">
             <objects>
                 <viewController id="WxQ-t6-fib" customClass="ChatsViewController" sceneMemberID="viewController">
@@ -13,14 +13,14 @@
                         <viewControllerLayoutGuide type="bottom" id="X3P-3H-0YW"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Qfn-hR-jqr">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="geK-sB-a3j">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatsReuseCellID" id="GQw-jz-wxj">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatsReuseCellID" id="GQw-jz-wxj">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GQw-jz-wxj" id="UMh-Lw-INH">
@@ -41,7 +41,6 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="geK-sB-a3j"/>
@@ -63,9 +62,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dmS-fg-QQU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-552" y="102"/>
+            <point key="canvasLocation" x="-552" y="336"/>
         </scene>
-        <!--Chat Room View Controller - Title-->
+        <!--Title-->
         <scene sceneID="nNo-2h-AFO">
             <objects>
                 <viewController id="kqv-k5-ZoN" customClass="ChatRoomViewController" sceneMemberID="viewController">
@@ -74,10 +73,9 @@
                         <viewControllerLayoutGuide type="bottom" id="qjC-o6-VqD"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="7XU-rJ-kBR">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="416"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <toolbarItems/>
@@ -89,7 +87,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pFB-Q4-7Md" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="46.5" y="102"/>
+            <point key="canvasLocation" x="418.5" y="222"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="cTP-Xq-bC1">
@@ -100,7 +98,7 @@
                         <viewControllerLayoutGuide type="bottom" id="pnV-FS-rmm"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="J19-Sx-Uu8">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="SK2-qq-LDu">
@@ -114,7 +112,6 @@
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="SK2-qq-LDu"/>
@@ -151,7 +148,7 @@
                         <viewControllerLayoutGuide type="bottom" id="hW4-HY-Y5d"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Nh3-KA-zhY">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Kt-xt-5hJ">
@@ -219,7 +216,6 @@
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="0Kt-xt-5hJ"/>
@@ -276,7 +272,7 @@
             </objects>
             <point key="canvasLocation" x="-2470.5" y="384.75"/>
         </scene>
-        <!--View Controller - Profile-->
+        <!--Profile-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
@@ -285,10 +281,9 @@
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" id="AlD-gf-fDT"/>
                 </viewController>
@@ -296,7 +291,7 @@
             </objects>
             <point key="canvasLocation" x="-1350" y="687"/>
         </scene>
-        <!--Friend Request View Controller - Friend Requests-->
+        <!--Friend Requests-->
         <scene sceneID="L2d-wt-YIL">
             <objects>
                 <viewController id="Gom-pD-1bC" customClass="FriendRequestViewController" sceneMemberID="viewController">
@@ -305,10 +300,9 @@
                         <viewControllerLayoutGuide type="bottom" id="dqj-yP-1dN"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ime-wk-y0t">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Friend Requests" id="WPW-aT-Lz0"/>
                 </viewController>
@@ -316,7 +310,7 @@
             </objects>
             <point key="canvasLocation" x="-1350" y="1278"/>
         </scene>
-        <!--View Controller - Settings-->
+        <!--Settings-->
         <scene sceneID="Dce-MW-sHy">
             <objects>
                 <viewController id="UB5-9p-MHv" sceneMemberID="viewController">
@@ -325,10 +319,9 @@
                         <viewControllerLayoutGuide type="bottom" id="eGo-sI-OLN"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="mL9-td-KtU">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" id="GeS-Zs-WPb"/>
                 </viewController>
@@ -336,7 +329,7 @@
             </objects>
             <point key="canvasLocation" x="-1350" y="1830"/>
         </scene>
-        <!--Navigation Controller - Chats-->
+        <!--Chats-->
         <scene sceneID="K0r-rt-R8u">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WZ3-Qw-pTM" sceneMemberID="viewController">
@@ -355,7 +348,7 @@
             </objects>
             <point key="canvasLocation" x="-1350" y="102"/>
         </scene>
-        <!--Navigation Controller - Explore-->
+        <!--Explore-->
         <scene sceneID="R4o-Ao-6cb">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fng-xZ-KjT" sceneMemberID="viewController">

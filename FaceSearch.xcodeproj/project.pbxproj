@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		567DCBFE19EED08F0054A979 /* Rate.m in Sources */ = {isa = PBXBuildFile; fileRef = 567DCBFD19EED08F0054A979 /* Rate.m */; };
+		567DCC0119EED1310054A979 /* FFUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 567DCC0019EED1310054A979 /* FFUser.m */; };
 		56CA4470196F1B16002B67C0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CA446F196F1B16002B67C0 /* main.m */; };
 		56CA4473196F1B16002B67C0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CA4472196F1B16002B67C0 /* AppDelegate.m */; };
 		56CA4476196F1B16002B67C0 /* FaceSearch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 56CA4474196F1B16002B67C0 /* FaceSearch.xcdatamodeld */; };
@@ -34,6 +36,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		567DCBFD19EED08F0054A979 /* Rate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rate.m; sourceTree = "<group>"; };
+		567DCBFF19EED09D0054A979 /* Rate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Rate.h; sourceTree = "<group>"; };
+		567DCC0019EED1310054A979 /* FFUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFUser.m; sourceTree = "<group>"; };
+		567DCC0219EED13E0054A979 /* FFUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFUser.h; sourceTree = "<group>"; };
 		56CA446A196F1B16002B67C0 /* FaceSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FaceSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56CA446E196F1B16002B67C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		56CA446F196F1B16002B67C0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -81,6 +87,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		567DCBFC19EED0680054A979 /* FaceFinderObjects */ = {
+			isa = PBXGroup;
+			children = (
+				567DCBFF19EED09D0054A979 /* Rate.h */,
+				567DCBFD19EED08F0054A979 /* Rate.m */,
+				567DCC0219EED13E0054A979 /* FFUser.h */,
+				567DCC0019EED1310054A979 /* FFUser.m */,
+			);
+			name = FaceFinderObjects;
+			sourceTree = "<group>";
+		};
 		56CA4461196F1B16002B67C0 = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +125,7 @@
 				56CA4471196F1B16002B67C0 /* AppDelegate.h */,
 				56CA4472196F1B16002B67C0 /* AppDelegate.m */,
 				56CA447A196F1B16002B67C0 /* Main.storyboard */,
+				567DCBFC19EED0680054A979 /* FaceFinderObjects */,
 				56CA4493196F1B47002B67C0 /* ViewControllers */,
 				56CA447D196F1B16002B67C0 /* Images.xcassets */,
 				56CA4474196F1B16002B67C0 /* FaceSearch.xcdatamodeld */,
@@ -262,6 +280,8 @@
 				56CA449B196F1B47002B67C0 /* ChatsViewController.m in Sources */,
 				56CA4473196F1B16002B67C0 /* AppDelegate.m in Sources */,
 				56CA4476196F1B16002B67C0 /* FaceSearch.xcdatamodeld in Sources */,
+				567DCBFE19EED08F0054A979 /* Rate.m in Sources */,
+				567DCC0119EED1310054A979 /* FFUser.m in Sources */,
 				56CA44A4196F203E002B67C0 /* SettingsViewController.m in Sources */,
 				56CA4479196F1B16002B67C0 /* FriendRequestViewController.m in Sources */,
 				56CA4470196F1B16002B67C0 /* main.m in Sources */,
@@ -453,6 +473,7 @@
 				56CA448F196F1B16002B67C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		56CA4490196F1B16002B67C0 /* Build configuration list for PBXNativeTarget "FaceSearchTests" */ = {
 			isa = XCConfigurationList;
@@ -461,6 +482,7 @@
 				56CA4492196F1B16002B67C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
