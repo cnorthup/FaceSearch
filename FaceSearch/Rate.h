@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FFUser.h"
 
 @interface Rate : NSObject
+
++(double)rateEquation:(FFUser*)user searchFace:(FFUser*)search;
+
 
 @end

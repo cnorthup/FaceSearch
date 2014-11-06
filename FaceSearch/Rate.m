@@ -7,7 +7,6 @@
 //
 
 #import "Rate.h"
-#import "FFUser.h"
 #import "math.h"
 
 @interface Rate ()
@@ -20,27 +19,33 @@
 
 +(NSArray*)rateUsers:(NSArray*)users searchFace:(FFUser*)searchFace;
 {
+    NSMutableArray* array = [NSMutableArray new];
     for (FFUser* user in users)
     {
-            user.score = [NSNumber numberWithInt:[Rate rateEquation:user searchFace:searchFace]];
+        user.score = [NSNumber numberWithDouble:[Rate rateEquation:user searchFace:searchFace]];
+        [array addObject:user];
     }
-    NSArray* array = [users sortedArrayUsingComparator:^NSComparisonResult(FFUser* obj1, FFUser* obj2) {
-        if (obj1.score > obj2.score) {
+    array = [NSMutableArray arrayWithArray:[array sortedArrayUsingComparator:^NSComparisonResult(FFUser* obj1, FFUser* obj2) {
+        if (obj1.score < obj2.score) {
             return NSOrderedDescending;
         }
-        else if (obj1.score < obj2.score) {
+        else if (obj1.score > obj2.score) {
             return NSOrderedAscending;
         }
         else {
             return NSOrderedSame;
         }
-    }];
+    }]];
     return array;
 }
 
-+(int)rateEquation:(FFUser*)user searchFace:(FFUser*)search
++(double)rateEquation:(FFUser*)user searchFace:(FFUser*)search
 {
-    int calculatedValue = 0;
+    /** array for both of rank and value goes like this
+     * [eyes, nose, ears, hair, chin, lips, eyebrows]
+     **/
+    
+    double calculatedValue = 0.0;
     for (int q = 0; q < 6; q++)
     {
         NSNumber* number = [search.featuresRank objectAtIndex:q];
