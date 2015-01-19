@@ -92,20 +92,62 @@
 
 +(double)decayEquation:(FFUser*)search :(FFUser*)otherUser
 {
-    int r = 0;
     double z = 0.0;
+    BOOL allMatter = YES;
     for (NSNumber* value in search.featuresValue)
     {
-        int x = abs(value.intValue - (int)[otherUser.featuresValue objectAtIndex:r]);
-        z += 14 * exp((-x) * 0.3);
-        r++;
+        if (value.doubleValue == 0.0)
+        {
+            allMatter = NO;
+        }
     }
+    if (allMatter == YES)
+    {
+        for (int r = 0; r < 3; r++)
+        {
+            int x = abs((int)[search.featuresValue objectAtIndex:r] - (int)[otherUser.featuresValue objectAtIndex:r]);
+            z += 14 * exp((-x) * (1/3));
+        }
+        for (int r = 3; r < 6; r++)
+        {
+            int x = abs((int)[search.featuresValue objectAtIndex:r] - (int)[otherUser.featuresValue objectAtIndex:r]);
+            z += 14 - (14 * exp((x) * (1/3)));
+        }
+    }
+
    // int x = abs((int)searchValue.integerValue - (int)userValue.integerValue);
     
     //this is the equation
     //             -(x * 0.3
     //  y = 14 * e^
-    //return 14 * exp((-x) * 0.3);
+    //return 14 * exp((x) * 0.3);
+    return z;
+}
+
++(double)decayRateAlgorith:(FFUser*)search :(FFUser*)otherUser
+{
+    double z = 0.0;
+    BOOL allMatter = YES;
+    for (NSNumber* value in search.featuresValue)
+    {
+        if (value.doubleValue == 0.0)
+        {
+            allMatter = NO;
+        }
+    }
+    if (allMatter == YES)
+    {
+        for (int r = 0; r < 3; r++)
+        {
+            int x = abs((int)[search.featuresValue objectAtIndex:r] - (int)[otherUser.featuresValue objectAtIndex:r]);
+            z += (14 * exp(((-x) + .29)*(1/5)))-.75;
+        }
+        for (int r = 3; r < 6; r++)
+        {
+            int x = abs((int)[search.featuresValue objectAtIndex:r] - (int)[otherUser.featuresValue objectAtIndex:r]);
+            z += 14.141 - (15 * exp((x - 14) * (1/3)));
+        }
+    }
     return z;
 }
 
