@@ -90,7 +90,7 @@
 
 #pragma --mark Decay Rate
 
-+(double)decayEquation:(FFUser*)search :(FFUser*)otherUser
++(double)decayEquation:(FFUser*)search other:(FFUser*)otherUser
 {
     double z = 0.0;
     BOOL allMatter = YES;
@@ -124,7 +124,7 @@
     return z;
 }
 
-+(double)decayRateAlgorith:(FFUser*)search :(FFUser*)otherUser
++(double)decayRateAlgorith:(FFUser*)search other:(FFUser*)otherUser
 {
     double z = 0.0;
     BOOL allMatter = YES;
