@@ -11,13 +11,13 @@
 
 @interface Rate ()
 
-@property FFUser* searchFace;
+@property SearchTemplate* searchFace;
 
 @end
 
 @implementation Rate
 
-+(NSArray*)rateUsers:(NSArray*)users searchFace:(FFUser*)searchFace;
++(NSArray*)rateUsers:(NSArray*)users searchFace:(SearchTemplate*)searchFace;
 {
     NSMutableArray* array = [NSMutableArray new];
     for (FFUser* user in users)
@@ -39,7 +39,7 @@
     return array;
 }
 
-+(double)rateEquation:(FFUser*)user searchFace:(FFUser*)search
++(double)rateEquation:(FFUser*)user searchFace:(SearchTemplate*)search
 {
     /** array for both of rank and value goes like this
      * [eyes, nose, ears, hair, chin, lips, eyebrows]
@@ -90,7 +90,7 @@
 
 #pragma --mark Decay Rate
 
-+(double)decayEquation:(FFUser*)search other:(FFUser*)otherUser
++(double)decayEquation:(FFUser*)search other:(SearchTemplate*)otherUser
 {
     double z = 0.0;
     BOOL allMatter = YES;
@@ -124,7 +124,7 @@
     return z;
 }
 
-+(double)decayRateAlgorith:(FFUser*)search other:(FFUser*)otherUser
++(double)decayRateAlgorith:(FFUser*)search other:(SearchTemplate*)otherUser
 {
     double z = 0.0;
     BOOL allMatter = YES;
@@ -152,6 +152,23 @@
 }
 
 #pragma --mark Equation my dad recommeneded
+
+//+(double)faceShapeScore:(SearchTemplate*)search user:(FFUser*)user
+//{
+//    double x = abs(search.headShape.doubleValue - user.headShape.doubleValue);
+//    if (x <= 4)
+//    {
+//        return 14 - (1.5 * x);
+//    }
+//    else if(4 < x < 10)
+//    {
+//        return 12 - x;
+//    }
+//    else
+//    {
+//        return 7 - (x * .5);
+//    }
+//}
 
 +(int)equationForFirstFeature:(NSNumber*)searchValue userValue:(NSNumber*)userValue
 {

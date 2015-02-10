@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "FFUser.h"
+#import "SearchTemplate.h"
 
 @interface Rate : NSObject
 
-+(double)rateEquation:(FFUser*)user searchFace:(FFUser*)search;
++(double)rateEquation:(FFUser*)user searchFace:(SearchTemplate*)search;
 
 
 @end
