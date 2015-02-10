@@ -39,6 +39,8 @@
     return array;
 }
 
+
+
 +(double)rateEquation:(FFUser*)user searchFace:(SearchTemplate*)search
 {
     /** array for both of rank and value goes like this
@@ -87,10 +89,122 @@
     return calculatedValue;
 }
 
++(FFUser*)prepareForRating:(FFUser*)user searchFace:(SearchTemplate*)searchFace
+{
+    for (int x = 0; x > 10; x++)
+    {
+        [user.featuresValue addObject:@"placeHolder"];
+    }
+    [user.featuresValue insertObject:user.eyeShape atIndex:searchFace.eyeRank.intValue];
+    [user.featuresValue insertObject:user.earShape atIndex:searchFace.earRank.intValue];
+    [user.featuresValue insertObject:user.lipShape atIndex:searchFace.lipRank.intValue];
+    [user.featuresValue insertObject:user.eyeBrowShape atIndex:searchFace.eyeBrowRank.intValue];
+    [user.featuresValue insertObject:user.noseShape atIndex:searchFace.noseRank.intValue];
+    [user.featuresValue insertObject:user.hairShape atIndex:searchFace.hairRank.intValue];
+
+    NSPredicate* filter = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+        if ([evaluatedObject isEqualToString:@"placeHolder"])
+        {
+            return nil;
+        }
+        else
+        {
+            return evaluatedObject;
+        }
+    }];
+    
+    user.featuresValue = (NSMutableArray*)[user.featuresValue filteredArrayUsingPredicate:filter];
+    
+    return user;
+}
+
+
+
+#pragma --mark New RatingEquations
+
++(double)harshDecayAlgorithEquation:(NSNumber*)user template:(NSNumber*)template
+{
+    double z = 0.0;
+    int x = abs(user.intValue - template.intValue);
+    z = (14 * exp(((-x) + .29)*(1/5)))-.75;
+    return z;
+}
+
++(double)easyDecayAlgorithEquation:(NSNumber*)user template:(NSNumber*)template
+{
+    double z = 0.0;
+    int x = abs(user.intValue - template.intValue);
+    z = 14.141 - (15 * exp((x - 14) * (1/3)));
+    return z;
+}
+
+
++(double)hardDecayEquation:(NSNumber*)user template:(NSNumber*)template
+{
+    double z = 0.0;
+    int x = abs(user.intValue - template.intValue);
+    z = 14 * exp((-x) * (1/3));
+    return z;
+}
+
+
++(double)easyDecayEquation:(NSNumber*)user template:(NSNumber*)template
+{
+    double z = 0.0;
+    int x = abs(user.intValue - template.intValue);
+    z = 14 - (14 * exp((x) * (1/3)));
+    return z;
+}
+
++(int)hardLinearEquation:(NSNumber*)user template:(NSNumber*)template
+{
+    int x = abs(user.intValue - template.intValue);
+    
+    if (x <= 4)
+    {
+        return 14 - (1.5 * x);
+    }
+    else if(4 < x < 10)
+    {
+        return 12 - x;
+    }
+    else
+    {
+        return 7 - (x * .5);
+    }
+}
+
+
++(int)easyLinearEquation:(NSNumber*)user template:(NSNumber*)template
+{
+    int z = abs(user.intValue - template.intValue);
+    
+    if (z <= 4)
+    {
+        return 14 - (.5 * z);
+    }
+    else if(4 < z < 10)
+    {
+        return 16 - z;
+    }
+    else
+    {
+        return 21 - (z * 1.5);
+    }
+}
+
+
+
+
+
+
+
+
+
 
 #pragma --mark Decay Rate
 
-+(double)decayEquation:(FFUser*)search other:(SearchTemplate*)otherUser
++(double)decayEquation:(SearchTemplate*)search other:(FFUser*)otherUser
 {
     double z = 0.0;
     BOOL allMatter = YES;
@@ -103,6 +217,9 @@
     }
     if (allMatter == YES)
     {
+//        for (NSNumber* rank in search.featuresRank) {
+//            
+//        }
         for (int r = 0; r < 3; r++)
         {
             int x = abs((int)[search.featuresValue objectAtIndex:r] - (int)[otherUser.featuresValue objectAtIndex:r]);
@@ -124,36 +241,68 @@
     return z;
 }
 
-+(double)decayRateAlgorith:(FFUser*)search other:(SearchTemplate*)otherUser
++(double)decayRateAlgorith:(SearchTemplate*)search other:(FFUser*)otherUser
 {
-    double z = 0.0;
-    BOOL allMatter = YES;
-    for (NSNumber* value in search.featuresValue)
+    if (search.gender == YES)
     {
-        if (value.doubleValue == 0.0)
+        double z = 0.0;
+        BOOL allMatter = YES;
+        for (NSNumber* value in search.featuresValue)
         {
-            allMatter = NO;
+            if (value.doubleValue == 0.0)
+            {
+                allMatter = NO;
+            }
         }
+        if (allMatter == YES)
+        {
+            for (int r = 0; r < 3; r++)
+            {
+                int x = abs((int)[search.featuresValue objectAtIndex:r] - (int)[otherUser.featuresValue objectAtIndex:r]);
+                z += (14 * exp(((-x) + .29)*(1/5)))-.75;
+            }
+            for (int r = 3; r < 6; r++)
+            {
+                int x = abs((int)[search.featuresValue objectAtIndex:r] - (int)[otherUser.featuresValue objectAtIndex:r]);
+                z += 14.141 - (15 * exp((x - 14) * (1/3)));
+            }
+        }
+        return z;
     }
-    if (allMatter == YES)
+    else
     {
-        for (int r = 0; r < 3; r++)
+        double z = 0.0;
+        BOOL allMatter = YES;
+        for (NSNumber* value in search.featuresValue)
         {
-            int x = abs((int)[search.featuresValue objectAtIndex:r] - (int)[otherUser.featuresValue objectAtIndex:r]);
-            z += (14 * exp(((-x) + .29)*(1/5)))-.75;
+            if (value.doubleValue == 0.0)
+            {
+                allMatter = NO;
+            }
         }
-        for (int r = 3; r < 6; r++)
+        if (allMatter == YES)
         {
-            int x = abs((int)[search.featuresValue objectAtIndex:r] - (int)[otherUser.featuresValue objectAtIndex:r]);
-            z += 14.141 - (15 * exp((x - 14) * (1/3)));
+            for (int r = 0; r < 3; r++)
+            {
+                int x = abs((int)[search.featuresValue objectAtIndex:r] - (int)[otherUser.featuresValue objectAtIndex:r]);
+                z += (14 * exp(((-x) + .29)*(1/5)))-.75;
+            }
+            for (int r = 3; r < 7; r++)
+            {
+                int x = abs((int)[search.featuresValue objectAtIndex:r] - (int)[otherUser.featuresValue objectAtIndex:r]);
+                z += 14.141 - (15 * exp((x - 14) * (1/3)));
+            }
         }
+        return z;
+        
     }
-    return z;
+
 }
 
-#pragma --mark Equation my dad recommeneded
+#pragma --mark New Equation based on all features
 
-//+(double)faceShapeScore:(SearchTemplate*)search user:(FFUser*)user
+
+//+(int)faceShapeScore:(SearchTemplate*)search user:(FFUser*)user
 //{
 //    double x = abs(search.headShape.doubleValue - user.headShape.doubleValue);
 //    if (x <= 4)
@@ -169,6 +318,33 @@
 //        return 7 - (x * .5);
 //    }
 //}
+//
+//+(int)earShapeScore:(SearchTemplate*)search user:(FFUser*)user
+//{
+//    if (search.earRank.intValue <= 3) {
+//        
+//    }
+//    
+//    int x = abs(search.earShape.intValue - user.earShape.intValue);
+//    if (x <= 4)
+//    {
+//        return 14 - (1.5 * x);
+//    }
+//    else if(4 < x < 10)
+//    {
+//        return 12 - x;
+//    }
+//    else
+//    {
+//        return 7 - (x * .5);
+//    }
+//}
+
+
+
+#pragma --mark Equation my dad recommeneded
+
+
 
 +(int)equationForFirstFeature:(NSNumber*)searchValue userValue:(NSNumber*)userValue
 {

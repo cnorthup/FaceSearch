@@ -11,13 +11,17 @@
 
 @interface SearchTemplate : FFUser
 
-@property (strong, nonatomic) NSNumber* headRank;
+@property (strong, nonatomic) NSArray* featuresRank;
+
 @property (strong, nonatomic) NSNumber* hairRank;
 @property (strong, nonatomic) NSNumber* lipRank;
 @property (strong, nonatomic) NSNumber* earRank;
 @property (strong, nonatomic) NSNumber* eyeRank;
-@property (strong, nonatomic) NSNumber* facialHairRank;
+@property (strong, nonatomic) NSNumber* eyeBrowRank;
 @property (strong, nonatomic) NSNumber* noseRank;
+
+@property (strong, nonatomic) NSNumber* headShapeRank;
+@property (strong, nonatomic) NSNumber* facialHairRank;
 @property (strong, nonatomic) NSNumber* glassesRank;
 @property (nonatomic) bool allFeaturesMatter;
 
