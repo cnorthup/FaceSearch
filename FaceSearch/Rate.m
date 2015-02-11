@@ -11,11 +11,520 @@
 
 @interface Rate ()
 
-@property SearchTemplate* searchFace;
+@property (strong, nonatomic)SearchTemplate* searchFace;
+
+enum myRatingSwitch
+{
+    LinearAlgorith        = 0,
+    SimpleDecayAlgortih   = 1,
+    ComplexDecayAlgorith  = 2
+};
+typedef enum myRatingSwitch RatingAlgorith;
+
+@property (nonatomic)RatingAlgorith* ratingMode;
 
 @end
 
 @implementation Rate
+
+
+#pragma --mark Creating Score
+
+
+-(NSMutableArray*)scoreUsers:(NSArray*)users withRating:(RatingAlgorith)ratingMode
+{
+    NSMutableArray* scoredUsers = [NSMutableArray new];
+    for (FFUser* user in users) {
+        switch (ratingMode) {
+            case LinearAlgorith:
+                [scoredUsers addObject:[self linearRating:user]];
+                break;
+                
+            case SimpleDecayAlgortih:
+                [scoredUsers addObject:[self simpleDecayRating:user]];
+                
+                break;
+                
+            case ComplexDecayAlgorith:
+                [scoredUsers addObject:[self complexDecayRating:user]];
+                
+                break;
+                
+                
+            default:
+                NSLog(@"did not select rating mode");
+                return nil;
+                break;
+        }
+    }
+    [scoredUsers sortUsingComparator:^NSComparisonResult(FFUser* obj1, FFUser* obj2)
+    {
+        if (obj1.score.doubleValue > obj2.score.doubleValue) {
+            return NSOrderedAscending;
+        }
+        else if(obj1.score.doubleValue < obj2.score.doubleValue)
+        {
+            return NSOrderedDescending;
+        }
+        else
+        {
+            return NSOrderedSame;
+        }
+    }];
+    return scoredUsers;
+}
+
+-(FFUser*)linearRating:(FFUser*)user
+{
+    switch (self.searchFace.earRank.intValue) {
+        case 0:
+            NSLog(@"Did not rank ear");
+            break;
+        case 1:
+        case 2:
+        case 3:
+            user.score = [NSNumber numberWithInt:[Rate hardLinearEquation:user.earShape template:self.searchFace.earShape]];
+            break;
+            
+        default:
+            user.score = [NSNumber numberWithInt:[Rate easyLinearEquation:user.earShape template:self.searchFace.earShape]];
+            break;
+    }
+    
+    switch (self.searchFace.eyeRank.intValue) {
+        case 0:
+            NSLog(@"Did not rank eye");
+            break;
+        case 1:
+        case 2:
+        case 3:
+            user.score = [NSNumber numberWithInt:user.score.intValue + [Rate hardLinearEquation:user.eyeShape template:self.searchFace.eyeShape]];
+            break;
+            
+        default:
+            user.score = [NSNumber numberWithInt:user.score.intValue + [Rate easyLinearEquation:user.eyeShape template:self.searchFace.eyeShape]];
+            break;
+    }
+    
+    switch (self.searchFace.eyeBrowRank.intValue) {
+        case 0:
+            NSLog(@"Did not rank eyebrow");
+            break;
+        case 1:
+        case 2:
+        case 3:
+            user.score = [NSNumber numberWithInt:user.score.intValue + [Rate hardLinearEquation:user.eyeBrowShape template:self.searchFace.eyeBrowShape]];
+            break;
+            
+        default:
+            user.score = [NSNumber numberWithInt:user.score.intValue + [Rate easyLinearEquation:user.eyeBrowShape template:self.searchFace.eyeBrowShape]];
+            break;
+    }
+    
+    switch (self.searchFace.hairRank.intValue) {
+        case 0:
+            NSLog(@"Did not rank hair");
+            break;
+        case 1:
+        case 2:
+        case 3:
+            user.score = [NSNumber numberWithInt:user.score.intValue + [Rate hardLinearEquation:user.hairShape template:self.searchFace.hairShape]];
+            break;
+            
+        default:
+            user.score = [NSNumber numberWithInt:user.score.intValue + [Rate easyLinearEquation:user.hairShape template:self.searchFace.hairShape]];
+            break;
+    }
+    
+    switch (self.searchFace.lipRank.intValue) {
+        case 0:
+            NSLog(@"Did not rank lip");
+            break;
+        case 1:
+        case 2:
+        case 3:
+            user.score = [NSNumber numberWithInt:user.score.intValue + [Rate hardLinearEquation:user.lipShape template:self.searchFace.lipShape]];
+            break;
+            
+        default:
+            user.score = [NSNumber numberWithInt:user.score.intValue + [Rate easyLinearEquation:user.lipShape template:self.searchFace.lipShape]];
+            break;
+    }
+    
+    switch (self.searchFace.noseRank.intValue) {
+        case 0:
+            NSLog(@"Did not rank nose");
+            break;
+        case 1:
+        case 2:
+        case 3:
+            user.score = [NSNumber numberWithInt:user.score.intValue + [Rate hardLinearEquation:user.noseShape template:self.searchFace.noseShape]];
+            break;
+            
+        default:
+            user.score = [NSNumber numberWithInt:user.score.intValue + [Rate easyLinearEquation:user.noseShape template:self.searchFace.noseShape]];
+            break;
+    }
+    
+    switch (self.searchFace.headShapeRank.intValue) {
+        case 0:
+            NSLog(@"Did not rank headshape");
+            break;
+        case 1:
+        case 2:
+        case 3:
+            user.score = [NSNumber numberWithInt:user.score.intValue + [Rate hardLinearEquation:user.headShape template:self.searchFace.headShape]];
+            break;
+            
+        default:
+            user.score = [NSNumber numberWithInt:user.score.intValue + [Rate easyLinearEquation:user.headShape template:self.searchFace.headShape]];
+            break;
+    }
+    
+    switch (self.searchFace.facialHairRank.intValue) {
+        case 0:
+            NSLog(@"Did not rank facial hair");
+            break;
+        case 1:
+        case 2:
+        case 3:
+            user.score = [NSNumber numberWithInt:user.score.intValue + [Rate hardLinearEquation:user.facialHairShape template:self.searchFace.facialHairShape]];
+            break;
+            
+        default:
+            user.score = [NSNumber numberWithInt:user.score.intValue + [Rate easyLinearEquation:user.facialHairShape template:self.searchFace.facialHairShape]];
+            break;
+    }
+    
+    return user;
+}
+
+-(FFUser*)complexDecayRating:(FFUser*)user
+{
+    switch (self.searchFace.earRank.intValue) {
+        case 0:
+            NSLog(@"Did not rank ear");
+            break;
+        case 1:
+        case 2:
+        case 3:
+            user.score = [NSNumber numberWithDouble:[Rate harshComplexDecay:user.earShape template:self.searchFace.earShape]];
+            break;
+            
+        default:
+            user.score = [NSNumber numberWithDouble:[Rate easyComplexDecay:user.earShape template:self.searchFace.earShape]];
+            break;
+    }
+    
+    switch (self.searchFace.eyeRank.intValue) {
+        case 0:
+            NSLog(@"Did not rank eye");
+            break;
+        case 1:
+        case 2:
+        case 3:
+            user.score = [NSNumber numberWithDouble:user.score.doubleValue + [Rate harshComplexDecay:user.eyeShape template:self.searchFace.eyeShape]];
+            break;
+            
+        default:
+            user.score = [NSNumber numberWithDouble:user.score.doubleValue + [Rate easyComplexDecay:user.eyeShape template:self.searchFace.eyeShape]];
+            break;
+    }
+    
+    switch (self.searchFace.eyeBrowRank.intValue) {
+        case 0:
+            NSLog(@"Did not rank eyebrow");
+            break;
+        case 1:
+        case 2:
+        case 3:
+            user.score = [NSNumber numberWithDouble:user.score.doubleValue + [Rate harshComplexDecay:user.eyeBrowShape template:self.searchFace.eyeBrowShape]];
+            break;
+            
+        default:
+            user.score = [NSNumber numberWithDouble:user.score.doubleValue + [Rate easyComplexDecay:user.eyeBrowShape template:self.searchFace.eyeBrowShape]];
+            break;
+    }
+    
+    switch (self.searchFace.hairRank.intValue) {
+        case 0:
+            NSLog(@"Did not rank hair");
+            break;
+        case 1:
+        case 2:
+        case 3:
+            user.score = [NSNumber numberWithDouble:user.score.doubleValue + [Rate harshComplexDecay:user.hairShape template:self.searchFace.hairShape]];
+            break;
+            
+        default:
+            user.score = [NSNumber numberWithDouble:user.score.doubleValue + [Rate easyComplexDecay:user.hairShape template:self.searchFace.hairShape]];
+            break;
+    }
+    
+    switch (self.searchFace.lipRank.intValue) {
+        case 0:
+            NSLog(@"Did not rank lip");
+            break;
+        case 1:
+        case 2:
+        case 3:
+            user.score = [NSNumber numberWithDouble:user.score.doubleValue + [Rate harshComplexDecay:user.lipShape template:self.searchFace.lipShape]];
+            break;
+            
+        default:
+            user.score = [NSNumber numberWithDouble:user.score.doubleValue + [Rate easyComplexDecay:user.lipShape template:self.searchFace.lipShape]];
+            break;
+    }
+    
+    switch (self.searchFace.noseRank.intValue) {
+        case 0:
+            NSLog(@"Did not rank nose");
+            break;
+        case 1:
+        case 2:
+        case 3:
+            user.score = [NSNumber numberWithDouble:user.score.doubleValue + [Rate harshComplexDecay:user.noseShape template:self.searchFace.noseShape]];
+            break;
+            
+        default:
+            user.score = [NSNumber numberWithDouble:user.score.doubleValue + [Rate easyComplexDecay:user.noseShape template:self.searchFace.noseShape]];
+            break;
+    }
+    
+    switch (self.searchFace.headShapeRank.intValue) {
+        case 0:
+            NSLog(@"Did not rank headshape");
+            break;
+        case 1:
+        case 2:
+        case 3:
+            user.score = [NSNumber numberWithDouble:user.score.doubleValue + [Rate harshComplexDecay:user.headShape template:self.searchFace.headShape]];
+            break;
+            
+        default:
+            user.score = [NSNumber numberWithDouble:user.score.doubleValue + [Rate easyComplexDecay:user.headShape template:self.searchFace.headShape]];
+            break;
+    }
+    
+    switch (self.searchFace.facialHairRank.intValue) {
+        case 0:
+            NSLog(@"Did not rank facial hair");
+            break;
+        case 1:
+        case 2:
+        case 3:
+            user.score = [NSNumber numberWithDouble:user.score.doubleValue + [Rate harshComplexDecay:user.facialHairShape template:self.searchFace.facialHairShape]];
+            break;
+            
+        default:
+            user.score = [NSNumber numberWithDouble:user.score.doubleValue + [Rate easyComplexDecay:user.facialHairShape template:self.searchFace.facialHairShape]];
+            break;
+    }
+    
+    return user;
+}
+
+-(FFUser*)simpleDecayRating:(FFUser*)user
+{
+    switch (self.searchFace.earRank.intValue) {
+        case 0:
+            NSLog(@"Did not rank ear");
+            break;
+        case 1:
+        case 2:
+        case 3:
+            user.score = [NSNumber numberWithDouble:[Rate harshSimpleDecay:user.earShape template:self.searchFace.earShape]];
+            break;
+            
+        default:
+            user.score = [NSNumber numberWithDouble:[Rate easySimpleDecay:user.earShape template:self.searchFace.earShape]];
+            break;
+    }
+    
+    switch (self.searchFace.eyeRank.intValue) {
+        case 0:
+            NSLog(@"Did not rank eye");
+            break;
+        case 1:
+        case 2:
+        case 3:
+            user.score = [NSNumber numberWithDouble:user.score.doubleValue + [Rate harshSimpleDecay:user.eyeShape template:self.searchFace.eyeShape]];
+            break;
+            
+        default:
+            user.score = [NSNumber numberWithDouble:user.score.doubleValue + [Rate easySimpleDecay:user.eyeShape template:self.searchFace.eyeShape]];
+            break;
+    }
+    
+    switch (self.searchFace.eyeBrowRank.intValue) {
+        case 0:
+            NSLog(@"Did not rank eyebrow");
+            break;
+        case 1:
+        case 2:
+        case 3:
+            user.score = [NSNumber numberWithDouble:user.score.doubleValue + [Rate harshSimpleDecay:user.eyeBrowShape template:self.searchFace.eyeBrowShape]];
+            break;
+            
+        default:
+            user.score = [NSNumber numberWithDouble:user.score.doubleValue + [Rate easySimpleDecay:user.eyeBrowShape template:self.searchFace.eyeBrowShape]];
+            break;
+    }
+    
+    switch (self.searchFace.hairRank.intValue) {
+        case 0:
+            NSLog(@"Did not rank hair");
+            break;
+        case 1:
+        case 2:
+        case 3:
+            user.score = [NSNumber numberWithDouble:user.score.doubleValue + [Rate harshSimpleDecay:user.hairShape template:self.searchFace.hairShape]];
+            break;
+            
+        default:
+            user.score = [NSNumber numberWithDouble:user.score.doubleValue + [Rate easySimpleDecay:user.hairShape template:self.searchFace.hairShape]];
+            break;
+    }
+    
+    switch (self.searchFace.lipRank.intValue) {
+        case 0:
+            NSLog(@"Did not rank lip");
+            break;
+        case 1:
+        case 2:
+        case 3:
+            user.score = [NSNumber numberWithDouble:user.score.doubleValue + [Rate harshSimpleDecay:user.lipShape template:self.searchFace.lipShape]];
+            break;
+            
+        default:
+            user.score = [NSNumber numberWithDouble:user.score.doubleValue + [Rate easySimpleDecay:user.lipShape template:self.searchFace.lipShape]];
+            break;
+    }
+    
+    switch (self.searchFace.noseRank.intValue) {
+        case 0:
+            NSLog(@"Did not rank nose");
+            break;
+        case 1:
+        case 2:
+        case 3:
+            user.score = [NSNumber numberWithDouble:user.score.doubleValue + [Rate harshSimpleDecay:user.noseShape template:self.searchFace.noseShape]];
+            break;
+            
+        default:
+            user.score = [NSNumber numberWithDouble:user.score.doubleValue + [Rate easySimpleDecay:user.noseShape template:self.searchFace.noseShape]];
+            break;
+    }
+    
+    switch (self.searchFace.headShapeRank.intValue) {
+        case 0:
+            NSLog(@"Did not rank headshape");
+            break;
+        case 1:
+        case 2:
+        case 3:
+            user.score = [NSNumber numberWithDouble:user.score.doubleValue + [Rate harshSimpleDecay:user.headShape template:self.searchFace.headShape]];
+            break;
+            
+        default:
+            user.score = [NSNumber numberWithDouble:user.score.doubleValue + [Rate easySimpleDecay:user.headShape template:self.searchFace.headShape]];
+            break;
+    }
+    
+    switch (self.searchFace.facialHairRank.intValue) {
+        case 0:
+            NSLog(@"Did not rank facial hair");
+            break;
+        case 1:
+        case 2:
+        case 3:
+            user.score = [NSNumber numberWithDouble:user.score.doubleValue + [Rate harshSimpleDecay:user.facialHairShape template:self.searchFace.facialHairShape]];
+            break;
+            
+        default:
+            user.score = [NSNumber numberWithDouble:user.score.doubleValue + [Rate easySimpleDecay:user.facialHairShape template:self.searchFace.facialHairShape]];
+            break;
+    }
+    
+    return user;
+}
+
+
+
+#pragma --mark New RatingEquations
+
++(double)harshSimpleDecay:(NSNumber*)user template:(NSNumber*)template
+{
+    double z = 0.0;
+    int x = abs(user.intValue - template.intValue);
+    z = (14 * exp(((-x) + .29)*(1/5)))-.75;
+    return z;
+}
+
++(double)easySimpleDecay:(NSNumber*)user template:(NSNumber*)template
+{
+    double z = 0.0;
+    int x = abs(user.intValue - template.intValue);
+    z = 14.141 - (15 * exp((x - 14) * (1/3)));
+    return z;
+}
+
+
++(double)harshComplexDecay:(NSNumber*)user template:(NSNumber*)template
+{
+    double z = 0.0;
+    int x = abs(user.intValue - template.intValue);
+    z = 14 * exp((-x) * (1/3));
+    return z;
+}
+
+
++(double)easyComplexDecay:(NSNumber*)user template:(NSNumber*)template
+{
+    double z = 0.0;
+    int x = abs(user.intValue - template.intValue);
+    z = 14 - (14 * exp((x) * (1/3)));
+    return z;
+}
+
++(int)hardLinearEquation:(NSNumber*)user template:(NSNumber*)template
+{
+    int x = abs(user.intValue - template.intValue);
+    
+    if (x <= 4)
+    {
+        return 14 - (1.5 * x);
+    }
+    else if(4 < x < 10)
+    {
+        return 12 - x;
+    }
+    else
+    {
+        return 7 - (x * .5);
+    }
+}
+
+
++(int)easyLinearEquation:(NSNumber*)user template:(NSNumber*)template
+{
+    int z = abs(user.intValue - template.intValue);
+    
+    if (z <= 4)
+    {
+        return 14 - (.5 * z);
+    }
+    else if(4 < z < 10)
+    {
+        return 16 - z;
+    }
+    else
+    {
+        return 21 - (z * 1.5);
+    }
+}
+
+#pragma --mark Orginal Rating
 
 +(NSArray*)rateUsers:(NSArray*)users searchFace:(SearchTemplate*)searchFace;
 {
@@ -80,7 +589,7 @@
             case 6:
                 calculatedValue = calculatedValue + [Rate equationForSixthFeature:[search.featuresValue objectAtIndex:q] userValue:[user.featuresValue objectAtIndex:q] allMatter:search.allFeaturesMatter];
                 break;
-            
+                
             default:
                 break;
         }
@@ -101,7 +610,7 @@
     [user.featuresValue insertObject:user.eyeBrowShape atIndex:searchFace.eyeBrowRank.intValue];
     [user.featuresValue insertObject:user.noseShape atIndex:searchFace.noseRank.intValue];
     [user.featuresValue insertObject:user.hairShape atIndex:searchFace.hairRank.intValue];
-
+    
     NSPredicate* filter = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
         if ([evaluatedObject isEqualToString:@"placeHolder"])
         {
@@ -117,89 +626,6 @@
     
     return user;
 }
-
-
-
-#pragma --mark New RatingEquations
-
-+(double)harshDecayAlgorithEquation:(NSNumber*)user template:(NSNumber*)template
-{
-    double z = 0.0;
-    int x = abs(user.intValue - template.intValue);
-    z = (14 * exp(((-x) + .29)*(1/5)))-.75;
-    return z;
-}
-
-+(double)easyDecayAlgorithEquation:(NSNumber*)user template:(NSNumber*)template
-{
-    double z = 0.0;
-    int x = abs(user.intValue - template.intValue);
-    z = 14.141 - (15 * exp((x - 14) * (1/3)));
-    return z;
-}
-
-
-+(double)hardDecayEquation:(NSNumber*)user template:(NSNumber*)template
-{
-    double z = 0.0;
-    int x = abs(user.intValue - template.intValue);
-    z = 14 * exp((-x) * (1/3));
-    return z;
-}
-
-
-+(double)easyDecayEquation:(NSNumber*)user template:(NSNumber*)template
-{
-    double z = 0.0;
-    int x = abs(user.intValue - template.intValue);
-    z = 14 - (14 * exp((x) * (1/3)));
-    return z;
-}
-
-+(int)hardLinearEquation:(NSNumber*)user template:(NSNumber*)template
-{
-    int x = abs(user.intValue - template.intValue);
-    
-    if (x <= 4)
-    {
-        return 14 - (1.5 * x);
-    }
-    else if(4 < x < 10)
-    {
-        return 12 - x;
-    }
-    else
-    {
-        return 7 - (x * .5);
-    }
-}
-
-
-+(int)easyLinearEquation:(NSNumber*)user template:(NSNumber*)template
-{
-    int z = abs(user.intValue - template.intValue);
-    
-    if (z <= 4)
-    {
-        return 14 - (.5 * z);
-    }
-    else if(4 < z < 10)
-    {
-        return 16 - z;
-    }
-    else
-    {
-        return 21 - (z * 1.5);
-    }
-}
-
-
-
-
-
-
-
-
 
 
 #pragma --mark Decay Rate

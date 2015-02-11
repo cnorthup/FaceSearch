@@ -19,7 +19,6 @@
 @property (strong, nonatomic) NSMutableArray* featuresValue;
 @property (strong, nonatomic) NSMutableArray* extraMaleFeatureValue;
 
-@property (strong, nonatomic) NSNumber* headShape;
 
 @property (strong, nonatomic) NSNumber* hairShape;
 @property (strong, nonatomic) NSNumber* lipShape;
@@ -29,7 +28,7 @@
 @property (strong, nonatomic) NSNumber* eyeBrowShape;
 
 @property (strong, nonatomic) NSNumber* facialHairShape;
-
+@property (strong, nonatomic) NSNumber* headShape;
 @property (strong, nonatomic) NSNumber* glassesShape;
 
 @property (nonatomic) BOOL gender;
