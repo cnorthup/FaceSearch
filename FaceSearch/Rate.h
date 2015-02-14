@@ -12,7 +12,16 @@
 
 @interface Rate : NSObject
 
-+(double)rateEquation:(FFUser*)user searchFace:(SearchTemplate*)search;
+enum myRatingSwitch
+{
+    LinearAlgorith        = 0,
+    SimpleDecayAlgortih   = 1,
+    ComplexDecayAlgorith  = 2
+};
+typedef enum myRatingSwitch RatingMode;
 
+@property (strong, nonatomic) NSArray* ratedUsers;
+
+-(id)initWithArray:(NSArray*)users withRatingMode:(RatingMode)preferedMode;
 
 @end

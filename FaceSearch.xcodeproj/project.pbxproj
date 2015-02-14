@@ -24,6 +24,7 @@
 		56CA44A0196F1DA4002B67C0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56CA449F196F1DA4002B67C0 /* CoreData.framework */; };
 		56CA44A2196F1DB8002B67C0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56CA44A1196F1DB8002B67C0 /* UIKit.framework */; };
 		56CA44A4196F203E002B67C0 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56CA44A3196F203E002B67C0 /* SettingsViewController.m */; };
+		56E412201A8E7466001CDFA3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56E4121F1A8E7466001CDFA3 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		56CA44A1196F1DB8002B67C0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		56CA44A3196F203E002B67C0 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		56CA44A5196F204D002B67C0 /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		56E4121F1A8E7466001CDFA3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56E412201A8E7466001CDFA3 /* CoreLocation.framework in Frameworks */,
 				56CA44A2196F1DB8002B67C0 /* UIKit.framework in Frameworks */,
 				56CA44A0196F1DA4002B67C0 /* CoreData.framework in Frameworks */,
 				56CA449E196F1D9B002B67C0 /* MapKit.framework in Frameworks */,
@@ -109,6 +112,7 @@
 				56CA446C196F1B16002B67C0 /* FaceSearch */,
 				56CA4486196F1B16002B67C0 /* FaceSearchTests */,
 				56CA446B196F1B16002B67C0 /* Products */,
+				56E4121F1A8E7466001CDFA3 /* CoreLocation.framework */,
 				56CA449F196F1DA4002B67C0 /* CoreData.framework */,
 				56CA449D196F1D9B002B67C0 /* MapKit.framework */,
 				56CA44A1196F1DB8002B67C0 /* UIKit.framework */,

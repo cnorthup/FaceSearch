@@ -12,30 +12,111 @@
 @interface Rate ()
 
 @property (strong, nonatomic)SearchTemplate* searchFace;
-
-enum myRatingSwitch
-{
-    LinearAlgorith        = 0,
-    SimpleDecayAlgortih   = 1,
-    ComplexDecayAlgorith  = 2
-};
-typedef enum myRatingSwitch RatingAlgorith;
-
-@property (nonatomic)RatingAlgorith* ratingMode;
+@property (nonatomic)RatingMode* ratingMode;
 
 @end
 
 @implementation Rate
 
 
+-(id)initWithArray:(NSArray*)users withRatingMode:(RatingMode)preferedMode
+{
+    self = [super init];
+    
+    if (self)
+    {
+        self.ratedUsers = [self divvyOutWork:users withRatingMode:preferedMode];
+    }
+    return self;
+}
+
+-(NSArray*)divvyOutWork:(NSArray*)work withRatingMode:(RatingMode)mode
+{
+    //int threadNeed = ;
+    
+    ///NSOperationQueue* queue = [NSOperationQueue new];
+   // dispatch_queue_t backgrounQueue = dispatch_queue_create("com.application.rating.core1", DISPATCH_QUEUE_CONCURRENT);
+    
+    int threadNeed = 0;
+    int arrayCount = (int)work.count - 1;
+    dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+    dispatch_group_t groupQueue = dispatch_group_create();
+    NSMutableArray* partialArray = [NSMutableArray new];
+
+    if (arrayCount > 100)
+    {
+        int leftOver = arrayCount % 50;
+        if (leftOver != 0)
+        {
+            threadNeed = (arrayCount/50)+1;
+        }
+        else
+        {
+            threadNeed = arrayCount/50;
+        }
+        
+        for (int x = 0; x < threadNeed; x++)
+        {
+            NSMutableArray* smallArray = [NSMutableArray new];
+            int p = x * 50;
+            int g;
+            if (arrayCount - p > 50)
+            {
+                g = 50;
+            }
+            else
+            {
+                g = arrayCount - p;
+            }
+            for (int z = p; z < g; z++)
+            {
+                [smallArray addObject:[work objectAtIndex:z]];
+
+            }
+            
+            dispatch_group_async(groupQueue, backgroundQueue, ^{
+                [partialArray addObjectsFromArray:[self scoreUsers:smallArray withRating:mode]];
+            });
+            
+        }
+        dispatch_group_notify(groupQueue, backgroundQueue, ^{
+            [partialArray sortUsingComparator:^NSComparisonResult(FFUser* obj1, FFUser* obj2)
+             {
+                 if (obj1.score.doubleValue > obj2.score.doubleValue)
+                 {
+                     return NSOrderedAscending;
+                 }
+                 else if(obj1.score.doubleValue < obj2.score.doubleValue)
+                 {
+                     return NSOrderedDescending;
+                 }
+                 else
+                 {
+                     return NSOrderedSame;
+                 }
+             }];
+            
+        });
+        return partialArray;
+    }
+    else
+    {
+        return [self scoreUsers:work withRating:mode];
+    }
+
+}
+
+
 #pragma --mark Creating Score
 
 
--(NSMutableArray*)scoreUsers:(NSArray*)users withRating:(RatingAlgorith)ratingMode
+-(NSMutableArray*)scoreUsers:(NSArray*)users withRating:(RatingMode)ratingMode
 {
     NSMutableArray* scoredUsers = [NSMutableArray new];
-    for (FFUser* user in users) {
-        switch (ratingMode) {
+    for (FFUser* user in users)
+    {
+        switch (ratingMode)
+        {
             case LinearAlgorith:
                 [scoredUsers addObject:[self linearRating:user]];
                 break;
@@ -59,7 +140,8 @@ typedef enum myRatingSwitch RatingAlgorith;
     }
     [scoredUsers sortUsingComparator:^NSComparisonResult(FFUser* obj1, FFUser* obj2)
     {
-        if (obj1.score.doubleValue > obj2.score.doubleValue) {
+        if (obj1.score.doubleValue > obj2.score.doubleValue)
+        {
             return NSOrderedAscending;
         }
         else if(obj1.score.doubleValue < obj2.score.doubleValue)
@@ -469,7 +551,6 @@ typedef enum myRatingSwitch RatingAlgorith;
     return z;
 }
 
-
 +(double)harshComplexDecay:(NSNumber*)user template:(NSNumber*)template
 {
     double z = 0.0;
@@ -477,7 +558,6 @@ typedef enum myRatingSwitch RatingAlgorith;
     z = 14 * exp((-x) * (1/3));
     return z;
 }
-
 
 +(double)easyComplexDecay:(NSNumber*)user template:(NSNumber*)template
 {
@@ -505,7 +585,6 @@ typedef enum myRatingSwitch RatingAlgorith;
     }
 }
 
-
 +(int)easyLinearEquation:(NSNumber*)user template:(NSNumber*)template
 {
     int z = abs(user.intValue - template.intValue);
@@ -523,6 +602,8 @@ typedef enum myRatingSwitch RatingAlgorith;
         return 21 - (z * 1.5);
     }
 }
+
+
 
 #pragma --mark Orginal Rating
 
@@ -547,8 +628,6 @@ typedef enum myRatingSwitch RatingAlgorith;
     }]];
     return array;
 }
-
-
 
 +(double)rateEquation:(FFUser*)user searchFace:(SearchTemplate*)search
 {
@@ -727,8 +806,6 @@ typedef enum myRatingSwitch RatingAlgorith;
 
 
 #pragma --mark Equation my dad recommeneded
-
-
 
 +(int)equationForFirstFeature:(NSNumber*)searchValue userValue:(NSNumber*)userValue
 {

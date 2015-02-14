@@ -104,10 +104,10 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="SK2-qq-LDu">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="64" width="400" height="687"/>
                                 </variation>
                                 <connections>
-                                    <outlet property="delegate" destination="rQz-Xq-bit" id="csd-vA-ghl"/>
+                                    <outlet property="delegate" destination="rQz-Xq-bit" id="BfL-di-FnX"/>
                                 </connections>
                             </mapView>
                         </subviews>
@@ -137,7 +137,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kcZ-A5-x8g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-474" y="-460.5"/>
+            <point key="canvasLocation" x="-477" y="-465.75"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="qkq-Lq-QST">
