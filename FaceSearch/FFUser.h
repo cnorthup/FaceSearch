@@ -32,6 +32,7 @@
 @property (strong, nonatomic) NSNumber* glassesShape;
 
 @property (nonatomic) BOOL gender;
+@property (strong, nonatomic) NSString* name;
 
 
 @property (strong, nonatomic) NSNumber* score;

@@ -13,98 +13,282 @@
 
 @property (strong, nonatomic)SearchTemplate* searchFace;
 @property (nonatomic)RatingMode* ratingMode;
+@property (strong, nonatomic)NSMutableArray* scoredUsers;
 
 @end
 
 @implementation Rate
 
 
--(id)initWithArray:(NSArray*)users withRatingMode:(RatingMode)preferedMode
+
+-(void)createTestUsers
 {
-    self = [super init];
+    NSMutableArray* testUsers = [NSMutableArray new];
+    self.searchFace = [SearchTemplate new];
+    self.searchFace.headShape = [NSNumber numberWithInt:(arc4random() %14)];
+    self.searchFace.hairShape = [NSNumber numberWithInt:(arc4random() %14)];
+    self.searchFace.earShape = [NSNumber numberWithInt:(arc4random() %14)];
+    self.searchFace.eyeBrowShape = [NSNumber numberWithInt:(arc4random() %14)];
+    self.searchFace.eyeShape = [NSNumber numberWithInt:(arc4random() %14)];
+    self.searchFace.lipShape = [NSNumber numberWithInt:(arc4random() %14)];
+    self.searchFace.noseShape = [NSNumber numberWithInt:(arc4random() %14)];
+    self.searchFace.name = @"Search_Template";
     
-    if (self)
-    {
-        self.ratedUsers = [self divvyOutWork:users withRatingMode:preferedMode];
+    self.searchFace.headShapeRank = [NSNumber numberWithInt:(arc4random() %7)+1];;
+    self.searchFace.hairRank = [NSNumber numberWithInt:(arc4random() %7)+1];
+    self.searchFace.earRank = [NSNumber numberWithInt:(arc4random() %7)+1];
+    self.searchFace.eyeBrowRank = [NSNumber numberWithInt:(arc4random() %7)+1];
+    self.searchFace.eyeRank = [NSNumber numberWithInt:(arc4random() %7)+1];
+    self.searchFace.lipRank = [NSNumber numberWithInt:(arc4random() %7)+1];
+    self.searchFace.noseRank = [NSNumber numberWithInt:(arc4random() %7)+1];
+    
+    //NSLog(@"%@", self.searchFace);
+    
+    for (int x = 0; x < 100000; x++) {
+        FFUser* user = [FFUser new];
+        user.headShape = [NSNumber numberWithInt:(arc4random() %14)];
+        user.hairShape = [NSNumber numberWithInt:(arc4random() %14)];
+        user.earShape = [NSNumber numberWithInt:(arc4random() %14)];
+        user.eyeBrowShape = [NSNumber numberWithInt:(arc4random() %14)];
+        user.eyeShape = [NSNumber numberWithInt:(arc4random() %14)];
+        user.lipShape = [NSNumber numberWithInt:(arc4random() %14)];
+        user.noseShape = [NSNumber numberWithInt:(arc4random() %14)];
+        user.name = [NSString stringWithFormat:@"Test_Subject:%d", x];
+        [testUsers addObject:user];
     }
-    return self;
+    for (FFUser* test in testUsers) {
+        //NSLog(@"%@", test.name);
+    }
+    [self divvyOutWork:testUsers withRatingMode:LinearAlgorith];
 }
 
--(NSArray*)divvyOutWork:(NSArray*)work withRatingMode:(RatingMode)mode
+-(void)divvyOutWork:(NSArray*)work withRatingMode:(RatingMode)mode
 {
+    NSDate* start = [NSDate new];
     //int threadNeed = ;
     
     ///NSOperationQueue* queue = [NSOperationQueue new];
    // dispatch_queue_t backgrounQueue = dispatch_queue_create("com.application.rating.core1", DISPATCH_QUEUE_CONCURRENT);
     
     int threadNeed = 0;
-    int arrayCount = (int)work.count - 1;
+    int arrayCount = (int)work.count;
+    int size = 200;
     dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+    dispatch_queue_t background2Queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
     dispatch_group_t groupQueue = dispatch_group_create();
+    dispatch_group_t group2Queue = dispatch_group_create();
+
     NSMutableArray* partialArray = [NSMutableArray new];
+    NSMutableArray* secondArray = [NSMutableArray new];
+
 
     if (arrayCount > 100)
     {
-        int leftOver = arrayCount % 50;
+        NSLog(@"%d", (int)work.count);
+        int leftOver = arrayCount % size;
+        NSLog(@"remainder %d", leftOver);
         if (leftOver != 0)
         {
-            threadNeed = (arrayCount/50)+1;
+            threadNeed = (arrayCount/size) + 1;
         }
         else
         {
-            threadNeed = arrayCount/50;
+            threadNeed = arrayCount/size;
         }
         
-        for (int x = 0; x < threadNeed; x++)
+        if (threadNeed <= 1000000)
         {
-            NSMutableArray* smallArray = [NSMutableArray new];
-            int p = x * 50;
-            int g;
-            if (arrayCount - p > 50)
+            NSLog(@"threads needed %d", threadNeed);
+            
+            for (int x = 0; x < threadNeed; x++)
             {
-                g = 50;
-            }
-            else
-            {
-                g = arrayCount - p;
-            }
-            for (int z = p; z < g; z++)
-            {
-                [smallArray addObject:[work objectAtIndex:z]];
+                NSLog(@"%d", x);
+                NSMutableArray* smallArray = [NSMutableArray new];
+                int p = x * size;
+                int g;
+                if ((arrayCount - p) > size)
+                {
+                    g = p + size;
+                }
+                else
+                {
+                    g = arrayCount;
+                }
+                for (int z = p; z < g; z++)
+                {
+                    [smallArray addObject:[work objectAtIndex:z]];
+                    NSLog(@"z: %d, g: %d, p: %d", z, g, p);
 
+                    
+                }
+                //group 1 start
+                dispatch_group_async(groupQueue, backgroundQueue, ^{
+                    if (smallArray.count == 0)
+                    {
+                    }
+                    else{
+                        if ([smallArray containsObject:nil]) {
+                            NSLog(@"contains nil");
+                        }
+                        else{
+                        NSLog(@"%lu", (unsigned long)smallArray.count);
+                        [partialArray addObjectsFromArray:[self scoreUsers:smallArray withRating:mode]];
+                        }
+                    }
+                });
+                
             }
             
-            dispatch_group_async(groupQueue, backgroundQueue, ^{
-                [partialArray addObjectsFromArray:[self scoreUsers:smallArray withRating:mode]];
+            
+            //group 2 start
+            dispatch_group_async(group2Queue, background2Queue, ^{
+                //[secondArray addObjectsFromArray:[self scoreUsers:work withRating:mode]];
             });
             
-        }
-        dispatch_group_notify(groupQueue, backgroundQueue, ^{
-            [partialArray sortUsingComparator:^NSComparisonResult(FFUser* obj1, FFUser* obj2)
-             {
-                 if (obj1.score.doubleValue > obj2.score.doubleValue)
-                 {
-                     return NSOrderedAscending;
-                 }
-                 else if(obj1.score.doubleValue < obj2.score.doubleValue)
-                 {
-                     return NSOrderedDescending;
-                 }
-                 else
-                 {
-                     return NSOrderedSame;
-                 }
-             }];
             
-        });
-        return partialArray;
-    }
-    else
-    {
-        return [self scoreUsers:work withRating:mode];
+            //group 1 finish
+            dispatch_group_notify(groupQueue, backgroundQueue, ^{
+                [partialArray sortUsingComparator:^NSComparisonResult(FFUser* obj1, FFUser* obj2)
+                 {
+                     if (obj1.score.doubleValue > obj2.score.doubleValue)
+                     {
+                         return NSOrderedAscending;
+                     }
+                     else if(obj1.score.doubleValue < obj2.score.doubleValue)
+                     {
+                         return NSOrderedDescending;
+                     }
+                     else
+                     {
+                         return NSOrderedSame;
+                     }
+                 }];
+                for (FFUser* test in partialArray) {
+                   // NSLog(@"%@, %@, Group 1", test.name, test.score);
+                }
+                NSLog(@"group one %lu", (unsigned long)partialArray.count);
+                NSLog(@"started %@   finished %@", start,[NSDate new] );
+            });
+            
+            dispatch_group_notify(group2Queue, background2Queue, ^{
+                [secondArray sortUsingComparator:^NSComparisonResult(FFUser* obj1, FFUser* obj2)
+                 {
+                     if (obj1.score.doubleValue > obj2.score.doubleValue)
+                     {
+                         return NSOrderedAscending;
+                     }
+                     else if(obj1.score.doubleValue < obj2.score.doubleValue)
+                     {
+                         return NSOrderedDescending;
+                     }
+                     else
+                     {
+                         return NSOrderedSame;
+                     }
+                 }];
+                for (FFUser* test in secondArray) {
+                    NSLog(@"%@, %@, Group 2", test.name, test.score);
+                }
+                NSLog(@"group two %lu", (unsigned long)secondArray.count);
+                NSLog(@"started %@   finished %@", start,[NSDate new] );
+            });
+        }
+        
+        else
+        {
+//            NSLog(@"threads needed %d", threadNeed);
+//            NSLog(@"%d", arrayCount / 59);
+//            for (int x = 0; x < 60; x++)
+//            {
+//                NSMutableArray* smallArray = [NSMutableArray new];
+//                int p = x * (arrayCount / 59);
+//                int g;
+//                if ((arrayCount - p) > 59)
+//                {
+//                    g = p + (arrayCount / 59);
+//                }
+//                else
+//                {
+//                    g = arrayCount;
+//                }
+//                for (int z = p; z < g; z++)
+//                {
+//                    [smallArray addObject:[work objectAtIndex:z]];
+//                    
+//                }
+//                //group 1 start
+//                dispatch_group_async(groupQueue, backgroundQueue, ^{
+//                    if (smallArray.count == 0) {
+//                        NSLog(@"no objects");
+//                    }
+//                    else{
+//                        NSLog(@"has objects");
+//
+//                        [partialArray addObjectsFromArray:[self scoreUsers:smallArray withRating:mode]];
+//                    }
+//                });
+//                
+//            }
+//            
+//            
+//            //group 2 start
+//            dispatch_group_async(group2Queue, background2Queue, ^{
+//                //[secondArray addObjectsFromArray:[self scoreUsers:work withRating:mode]];
+//            });
+//            
+//            
+//            //group 1 finish
+//            dispatch_group_notify(groupQueue, backgroundQueue, ^{
+//                [partialArray sortUsingComparator:^NSComparisonResult(FFUser* obj1, FFUser* obj2)
+//                 {
+//                     if (obj1.score.doubleValue > obj2.score.doubleValue)
+//                     {
+//                         return NSOrderedAscending;
+//                     }
+//                     else if(obj1.score.doubleValue < obj2.score.doubleValue)
+//                     {
+//                         return NSOrderedDescending;
+//                     }
+//                     else
+//                     {
+//                         return NSOrderedSame;
+//                     }
+//                 }];
+//                for (FFUser* test in partialArray) {
+//                    NSLog(@"%@, %@, Group 1", test.name, test.score);
+//                }
+//                NSLog(@"group one %lu", (unsigned long)partialArray.count);
+//                NSLog(@"started %@   finished %@", start,[NSDate new] );
+//            });
+//            
+//            dispatch_group_notify(group2Queue, background2Queue, ^{
+//                [secondArray sortUsingComparator:^NSComparisonResult(FFUser* obj1, FFUser* obj2)
+//                 {
+//                     if (obj1.score.doubleValue > obj2.score.doubleValue)
+//                     {
+//                         return NSOrderedAscending;
+//                     }
+//                     else if(obj1.score.doubleValue < obj2.score.doubleValue)
+//                     {
+//                         return NSOrderedDescending;
+//                     }
+//                     else
+//                     {
+//                         return NSOrderedSame;
+//                     }
+//                 }];
+//                for (FFUser* test in secondArray) {
+//                    NSLog(@"%@, %@, Group 2", test.name, test.score);
+//                }
+//                NSLog(@"group one %lu", (unsigned long)secondArray.count);
+//                NSLog(@"started %@   finished %@", start,[NSDate new] );
+//            });
+            
+        }
     }
 
 }
+
 
 
 #pragma --mark Creating Score
@@ -265,7 +449,7 @@
     
     switch (self.searchFace.facialHairRank.intValue) {
         case 0:
-            NSLog(@"Did not rank facial hair");
+            //NSLog(@"Did not rank facial hair");
             break;
         case 1:
         case 2:

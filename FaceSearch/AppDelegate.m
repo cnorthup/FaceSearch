@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "Rate.h"
 
 @interface AppDelegate ()
             
@@ -20,7 +21,8 @@
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
+    Rate* test = [Rate new];
+    [test createTestUsers];
     // Override point for customization after application launch.
     return YES;
 }

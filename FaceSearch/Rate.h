@@ -10,6 +10,18 @@
 #import "FFUser.h"
 #import "SearchTemplate.h"
 
+@class Rate;
+
+@protocol RatingDelegate <NSObject>
+
+@required
+
+-(void)ratingComplete:(NSArray*)users;
+-(void)errorWhileRatingUsers;
+
+@end
+
+
 @interface Rate : NSObject
 
 enum myRatingSwitch
@@ -21,7 +33,10 @@ enum myRatingSwitch
 typedef enum myRatingSwitch RatingMode;
 
 @property (strong, nonatomic) NSArray* ratedUsers;
+@property (weak, nonatomic) id <RatingDelegate> delegate;
 
--(id)initWithArray:(NSArray*)users withRatingMode:(RatingMode)preferedMode;
+
+-(void)createTestUsers;
+
 
 @end
