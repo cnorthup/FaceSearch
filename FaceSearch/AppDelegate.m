@@ -22,9 +22,58 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     Rate* test = [Rate new];
-    [test createTestUsers];
-    // Override point for customization after application launch.
+    
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UITabBarController* rootTabBar = [storyboard instantiateViewControllerWithIdentifier:@"TabBarController"];
+    self.window.rootViewController = rootTabBar;
+    
+    UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
+    UITabBar *tabBar = rootTabBar.tabBar;
+    UITabBarItem *tabBarItem1 = [tabBar.items objectAtIndex:0];
+    UITabBarItem *tabBarItem2 = [tabBar.items objectAtIndex:1];
+    UITabBarItem *tabBarItem3 = [tabBar.items objectAtIndex:2];
+    UITabBarItem *tabBarItem4 = [tabBar.items objectAtIndex:3];
+    
+    //tabBar.autoresizesSubviews = NO;
+    tabBar.clipsToBounds = YES;
+    [tabBar sizeToFit];
+    
+    
+    tabBarItem1.selectedImage = [[UIImage imageNamed:@"selectimg"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    tabBarItem1.image = [[UIImage imageNamed:@"deselectimg"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    tabBarItem1.title = @"";
+    
+    tabBarItem2.selectedImage = [[UIImage imageNamed:@"selectimg"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    tabBarItem2.image = [[UIImage imageNamed:@"deselectimg"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    tabBarItem2.title = @"";
+    
+    UIImage* selectedProfileBarImage = [UIImage imageNamed:@"profileSelectedBarButton"];
+    
+    tabBarItem3.image = [self imageWithImage:selectedProfileBarImage scaledToSize:CGSizeMake(40, 40)];
+    tabBarItem3.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
+    
+    //tabBarItem3.selectedImage = [[UIImage imageNamed:@"face-finder-icon"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+   // tabBarItem3.image = [[UIImage imageNamed:@"face-finder-icon.png"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    tabBarItem3.title = @"";
+    //UIImage* profileBarImage = [UIImage imageNamed:@"face-finder-icon"];
+    //profileBarImage
+    //[tabBarItem3 setImage:[UIImage imageNamed:@"face-finder-icon"]];
+    //[tabBarItem3 setSelectedImage:[UIImage imageNamed:@"face-finder-icon"]];
+    
+    tabBarItem4.selectedImage = [[UIImage imageNamed:@"selectimg"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    tabBarItem4.image = [[UIImage imageNamed:@"deselectimg"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    tabBarItem4.title = @"";
+    
     return YES;
+}
+
+- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize
+{
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
+    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

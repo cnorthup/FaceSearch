@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FriendRequestViewController: UIViewController
+@interface FriendsListViewController: UIViewController
 
 
 @end

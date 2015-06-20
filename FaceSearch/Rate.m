@@ -14,6 +14,7 @@
 @property (strong, nonatomic)SearchTemplate* searchFace;
 @property (nonatomic)RatingMode* ratingMode;
 @property (strong, nonatomic)NSMutableArray* scoredUsers;
+@property long numberOfTestUsers;
 
 @end
 
@@ -24,6 +25,7 @@
 -(void)createTestUsers
 {
     NSMutableArray* testUsers = [NSMutableArray new];
+    self.numberOfTestUsers = 100000000;
     self.searchFace = [SearchTemplate new];
     self.searchFace.headShape = [NSNumber numberWithInt:(arc4random() %14)];
     self.searchFace.hairShape = [NSNumber numberWithInt:(arc4random() %14)];
@@ -43,8 +45,12 @@
     self.searchFace.noseRank = [NSNumber numberWithInt:(arc4random() %7)+1];
     
     //NSLog(@"%@", self.searchFace);
-    
-    for (int x = 0; x < 100000; x++) {
+    BOOL first = YES;
+    for (long x = 0; x < self.numberOfTestUsers; x++) {
+        if (first == YES) {
+            NSLog(@"started");
+        }
+        first = NO;
         FFUser* user = [FFUser new];
         user.headShape = [NSNumber numberWithInt:(arc4random() %14)];
         user.hairShape = [NSNumber numberWithInt:(arc4random() %14)];
@@ -53,9 +59,10 @@
         user.eyeShape = [NSNumber numberWithInt:(arc4random() %14)];
         user.lipShape = [NSNumber numberWithInt:(arc4random() %14)];
         user.noseShape = [NSNumber numberWithInt:(arc4random() %14)];
-        user.name = [NSString stringWithFormat:@"Test_Subject:%d", x];
+        //user.name = [NSString stringWithFormat:@"Test_Subject:%ld", x];
         [testUsers addObject:user];
     }
+    NSLog(@"created users");
     for (FFUser* test in testUsers) {
         //NSLog(@"%@", test.name);
     }
@@ -70,8 +77,8 @@
     ///NSOperationQueue* queue = [NSOperationQueue new];
    // dispatch_queue_t backgrounQueue = dispatch_queue_create("com.application.rating.core1", DISPATCH_QUEUE_CONCURRENT);
     
-    int threadNeed = 0;
-    int arrayCount = (int)work.count;
+    long threadNeed = 0;
+    long arrayCount = (int)work.count;
     int size = 200;
     dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
     dispatch_queue_t background2Queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
@@ -80,11 +87,12 @@
 
     NSMutableArray* partialArray = [NSMutableArray new];
     NSMutableArray* secondArray = [NSMutableArray new];
+    NSLock *arrayLock = [[NSLock alloc] init];
 
 
     if (arrayCount > 100)
     {
-        NSLog(@"%d", (int)work.count);
+        //NSLog(@"%d", (int)work.count);
         int leftOver = arrayCount % size;
         NSLog(@"remainder %d", leftOver);
         if (leftOver != 0)
@@ -98,14 +106,16 @@
         
         if (threadNeed <= 1000000)
         {
-            NSLog(@"threads needed %d", threadNeed);
-            
+            NSLog(@"threads needed %ld", threadNeed);
+            dispatch_group_enter(groupQueue);
+
+
             for (int x = 0; x < threadNeed; x++)
             {
-                NSLog(@"%d", x);
+                //NSLog(@"%d", x);
                 NSMutableArray* smallArray = [NSMutableArray new];
                 int p = x * size;
-                int g;
+                long g;
                 if ((arrayCount - p) > size)
                 {
                     g = p + size;
@@ -117,26 +127,27 @@
                 for (int z = p; z < g; z++)
                 {
                     [smallArray addObject:[work objectAtIndex:z]];
-                    NSLog(@"z: %d, g: %d, p: %d", z, g, p);
+                    //NSLog(@"z: %d, g: %d, p: %d", z, g, p);
 
                     
                 }
                 //group 1 start
+
                 dispatch_group_async(groupQueue, backgroundQueue, ^{
-                    if (smallArray.count == 0)
-                    {
-                    }
-                    else{
-                        if ([smallArray containsObject:nil]) {
-                            NSLog(@"contains nil");
-                        }
-                        else{
-                        NSLog(@"%lu", (unsigned long)smallArray.count);
+                    if (smallArray.count > 0){
+                        [arrayLock lock];
                         [partialArray addObjectsFromArray:[self scoreUsers:smallArray withRating:mode]];
-                        }
+                        [arrayLock unlock];
                     }
+                    //NSLog(@"partialArray = %lu", (unsigned long)partialArray.count);
+                    if (partialArray.count >= (self.numberOfTestUsers - 1)) {
+                        dispatch_group_leave(groupQueue);
+
+                    }
+
+
                 });
-                
+
             }
             
             
@@ -148,6 +159,7 @@
             
             //group 1 finish
             dispatch_group_notify(groupQueue, backgroundQueue, ^{
+                NSLog(@"partialArray = %lu", (unsigned long)partialArray.count);
                 [partialArray sortUsingComparator:^NSComparisonResult(FFUser* obj1, FFUser* obj2)
                  {
                      if (obj1.score.doubleValue > obj2.score.doubleValue)
@@ -190,7 +202,7 @@
                     NSLog(@"%@, %@, Group 2", test.name, test.score);
                 }
                 NSLog(@"group two %lu", (unsigned long)secondArray.count);
-                NSLog(@"started %@   finished %@", start,[NSDate new] );
+                //NSLog(@"started %@   finished %@", start,[NSDate new] );
             });
         }
         
@@ -759,7 +771,7 @@
     {
         return 14 - (1.5 * x);
     }
-    else if(4 < x < 10)
+    else if(4 < x < 10.0)
     {
         return 12 - x;
     }
@@ -777,7 +789,7 @@
     {
         return 14 - (.5 * z);
     }
-    else if(4 < z < 10)
+    else if(4 < z < 10.0)
     {
         return 16 - z;
     }
@@ -999,7 +1011,7 @@
     {
         return 14 - (1.5 * x);
     }
-    else if(4 < x < 10)
+    else if(4 < x < 10.0)
     {
         return 12 - x;
     }
@@ -1017,7 +1029,7 @@
     {
         return 14 - (1.5 * y);
     }
-    else if(4 < y < 10)
+    else if(4 < y < 10.0)
     {
         return 12 - y;
     }
@@ -1037,7 +1049,7 @@
         {
             return 14 - (1.5 * w);
         }
-        else if(4 < w < 10)
+        else if(4 < w < 10.0)
         {
             return 12 - w;
         }
@@ -1053,7 +1065,7 @@
         {
             return 14 - (.5 * w);
         }
-        else if(4 < w < 10)
+        else if(4 < w < 10.0)
         {
             return 16 - w;
         }
@@ -1075,7 +1087,7 @@
         {
             return 14 - (.5 * v);
         }
-        else if(4 < v < 10)
+        else if(4 < v < 10.0)
         {
             return 16 - v;
         }
@@ -1101,7 +1113,7 @@
         {
             return 14 - (.5 * u);
         }
-        else if(4 < u < 10)
+        else if(4 < u < 10.0)
         {
             return 16 - u;
         }
@@ -1128,7 +1140,7 @@
         {
             return 14 - (.5 * z);
         }
-        else if(4 < z < 10)
+        else if(4 < z < 10.0)
         {
             return 16 - z;
         }

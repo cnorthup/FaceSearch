@@ -6,14 +6,14 @@
 //  Copyright (c) 2014 Contract. All rights reserved.
 //
 
-#import "FriendRequestViewController.h"
+#import "FriendsListViewController.h"
 
-@interface FriendRequestViewController ()
+@interface FriendsListViewController ()
             
 
 @end
 
-@implementation FriendRequestViewController
+@implementation FriendsListViewController
             
 - (void)viewDidLoad {
     [super viewDidLoad];

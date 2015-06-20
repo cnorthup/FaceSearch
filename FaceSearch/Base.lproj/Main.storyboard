@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14D72i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3gu-jQ-YSP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E11f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3gu-jQ-YSP">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
         <!--Messages-->
@@ -126,7 +126,7 @@
                     <navigationItem key="navigationItem" id="vvs-bd-0iQ">
                         <barButtonItem key="leftBarButtonItem" systemItem="search" id="dyu-hj-jn4">
                             <connections>
-                                <segue destination="wXW-4b-cbL" kind="show" id="wNu-7g-Dz0"/>
+                                <action selector="didPressSearchButton:" destination="rQz-Xq-bit" id="0LJ-23-wDi"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="xKS-Cg-byS"/>
@@ -139,10 +139,10 @@
             </objects>
             <point key="canvasLocation" x="-477" y="-465.75"/>
         </scene>
-        <!--View Controller-->
+        <!--Select Features-->
         <scene sceneID="qkq-Lq-QST">
             <objects>
-                <viewController id="wXW-4b-cbL" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SelectFeaturesViewController" id="wXW-4b-cbL" customClass="SelectFeatures" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GQR-ea-lnA"/>
                         <viewControllerLayoutGuide type="bottom" id="hW4-HY-Y5d"/>
@@ -151,112 +151,58 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bx1-Y1-Bbt">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="h2" translatesAutoresizingMaskIntoConstraints="NO" id="f1h-UI-arf" userLabel="HeadShapeView">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                                    <rect key="frame" x="53" y="103" width="274" height="454"/>
                                 </variation>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="G1k-n8-KOM">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="e1" translatesAutoresizingMaskIntoConstraints="NO" id="hWP-MZ-xcy" userLabel="EyeShapeView">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                                    <rect key="frame" x="37" y="125" width="306" height="409"/>
                                 </variation>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hKS-i8-99x">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="l1" translatesAutoresizingMaskIntoConstraints="NO" id="tTp-Gs-7rh" userLabel="LipShapeView">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                                    <rect key="frame" x="-8" y="222" width="397" height="380"/>
                                 </variation>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rr8-16-MDX">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nose1" translatesAutoresizingMaskIntoConstraints="NO" id="Fhr-Fh-jdX" userLabel="NoseShapeView">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                                    <rect key="frame" x="43" y="235" width="295" height="267"/>
                                 </variation>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MRe-WU-XgV">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mh1" translatesAutoresizingMaskIntoConstraints="NO" id="CNV-f8-krg" userLabel="HairShapeView">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                                    <rect key="frame" x="48" y="142" width="284" height="313"/>
                                 </variation>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="crR-EI-uft">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fh11" translatesAutoresizingMaskIntoConstraints="NO" id="bMM-5Z-upR" userLabel="BeardShapeView">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                                    <rect key="frame" x="16" y="243" width="342" height="259"/>
                                 </variation>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Drl-hN-W7E">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ear1" translatesAutoresizingMaskIntoConstraints="NO" id="nUK-u5-5np" userLabel="LeftEarShapeView">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                                    <rect key="frame" x="71" y="163" width="170" height="412"/>
                                 </variation>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ioX-Xm-eHo">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eyebrow1" translatesAutoresizingMaskIntoConstraints="NO" id="VY8-0e-lcF" userLabel="EyeBrowShapeView">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                                    <rect key="frame" x="37" y="199" width="301" height="274"/>
                                 </variation>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fip-Aa-7DN">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5Dl-8r-uDc" userLabel="GlassesShapeView">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
-                                </variation>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="f1h-UI-arf">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="16" y="64" width="100" height="100"/>
-                                </variation>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hWP-MZ-xcy">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="124" y="64" width="100" height="100"/>
-                                </variation>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HWA-bg-ICX">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="232" y="64" width="100" height="100"/>
-                                </variation>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Fhr-Fh-jdX">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="16" y="172" width="100" height="100"/>
-                                </variation>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tTp-Gs-7rh">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="124" y="172" width="100" height="100"/>
-                                </variation>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CNV-f8-krg">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="232" y="172" width="100" height="100"/>
-                                </variation>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bMM-5Z-upR">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="16" y="280" width="100" height="100"/>
-                                </variation>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VY8-0e-lcF">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="124" y="280" width="100" height="100"/>
-                                </variation>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5Dl-8r-uDc">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="232" y="280" width="100" height="100"/>
+                                    <rect key="frame" x="284" y="72" width="100" height="100"/>
                                 </variation>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OqK-Nj-0y9">
@@ -295,61 +241,62 @@
                                     <rect key="frame" x="16" y="713" width="46" height="30"/>
                                 </variation>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ear1" translatesAutoresizingMaskIntoConstraints="NO" id="HWA-bg-ICX" userLabel="RightEarShapeView">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="135" y="163" width="170" height="412"/>
+                                </variation>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="Bx1-Y1-Bbt"/>
-                                <exclude reference="G1k-n8-KOM"/>
-                                <exclude reference="hKS-i8-99x"/>
-                                <exclude reference="rr8-16-MDX"/>
-                                <exclude reference="MRe-WU-XgV"/>
-                                <exclude reference="crR-EI-uft"/>
-                                <exclude reference="Drl-hN-W7E"/>
-                                <exclude reference="ioX-Xm-eHo"/>
-                                <exclude reference="fip-Aa-7DN"/>
                                 <exclude reference="f1h-UI-arf"/>
                                 <exclude reference="hWP-MZ-xcy"/>
-                                <exclude reference="HWA-bg-ICX"/>
-                                <exclude reference="Fhr-Fh-jdX"/>
                                 <exclude reference="tTp-Gs-7rh"/>
+                                <exclude reference="Fhr-Fh-jdX"/>
                                 <exclude reference="CNV-f8-krg"/>
                                 <exclude reference="bMM-5Z-upR"/>
+                                <exclude reference="nUK-u5-5np"/>
                                 <exclude reference="VY8-0e-lcF"/>
                                 <exclude reference="5Dl-8r-uDc"/>
                                 <exclude reference="OqK-Nj-0y9"/>
                                 <exclude reference="3PW-qB-mRt"/>
                                 <exclude reference="RMX-oQ-CKQ"/>
                                 <exclude reference="0Kt-xt-5hJ"/>
+                                <exclude reference="HWA-bg-ICX"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
-                                <include reference="Bx1-Y1-Bbt"/>
-                                <include reference="G1k-n8-KOM"/>
-                                <include reference="hKS-i8-99x"/>
-                                <include reference="rr8-16-MDX"/>
-                                <include reference="MRe-WU-XgV"/>
-                                <include reference="crR-EI-uft"/>
-                                <include reference="Drl-hN-W7E"/>
-                                <include reference="ioX-Xm-eHo"/>
-                                <include reference="fip-Aa-7DN"/>
                                 <include reference="f1h-UI-arf"/>
                                 <include reference="hWP-MZ-xcy"/>
-                                <include reference="HWA-bg-ICX"/>
-                                <include reference="Fhr-Fh-jdX"/>
                                 <include reference="tTp-Gs-7rh"/>
+                                <include reference="Fhr-Fh-jdX"/>
                                 <include reference="CNV-f8-krg"/>
                                 <include reference="bMM-5Z-upR"/>
+                                <include reference="nUK-u5-5np"/>
                                 <include reference="VY8-0e-lcF"/>
                                 <include reference="5Dl-8r-uDc"/>
                                 <include reference="OqK-Nj-0y9"/>
                                 <include reference="3PW-qB-mRt"/>
                                 <include reference="RMX-oQ-CKQ"/>
                                 <include reference="0Kt-xt-5hJ"/>
+                                <include reference="HWA-bg-ICX"/>
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="beardShapeImageView" destination="bMM-5Z-upR" id="EiF-8B-z54"/>
+                        <outlet property="eyeBrowShapeImageView" destination="VY8-0e-lcF" id="3dv-13-S8E"/>
+                        <outlet property="eyeShapeImageView" destination="hWP-MZ-xcy" id="Mq6-ha-tSZ"/>
+                        <outlet property="hairShapeImageView" destination="CNV-f8-krg" id="Coo-wO-YCF"/>
+                        <outlet property="headShapeImageView" destination="f1h-UI-arf" id="mBq-tt-1IP"/>
+                        <outlet property="leftEarShapeImageView" destination="nUK-u5-5np" id="d5n-OT-KWr"/>
+                        <outlet property="lipShapeImageView" destination="tTp-Gs-7rh" id="odQ-P6-ajQ"/>
+                        <outlet property="noseShapeImageView" destination="Fhr-Fh-jdX" id="JFX-YH-zXY"/>
+                        <outlet property="rightEarShapeImageView" destination="HWA-bg-ICX" id="e1L-M7-cB8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A1t-iB-zte" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -358,7 +305,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="JVJ-oY-c6C">
             <objects>
-                <tabBarController id="3gu-jQ-YSP" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" id="3gu-jQ-YSP" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="SZQ-Mh-wC1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -370,7 +317,6 @@
                         <segue destination="WZ3-Qw-pTM" kind="relationship" relationship="viewControllers" id="IHn-H3-5p7"/>
                         <segue destination="vXZ-lx-hvc" kind="relationship" relationship="viewControllers" id="ePZ-5u-NqC"/>
                         <segue destination="Gom-pD-1bC" kind="relationship" relationship="viewControllers" id="gOt-z1-YS6"/>
-                        <segue destination="UB5-9p-MHv" kind="relationship" relationship="viewControllers" id="cSW-e4-YGp"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C5c-oo-jmh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -399,7 +345,7 @@
         <!--Friend Requests-->
         <scene sceneID="L2d-wt-YIL">
             <objects>
-                <viewController id="Gom-pD-1bC" customClass="FriendRequestViewController" sceneMemberID="viewController">
+                <viewController id="Gom-pD-1bC" customClass="FriendsListViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SSl-b6-Xha"/>
                         <viewControllerLayoutGuide type="bottom" id="dqj-yP-1dN"/>
@@ -413,7 +359,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zQG-Rq-jL7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1350" y="1278"/>
+            <point key="canvasLocation" x="-1794" y="1307.25"/>
         </scene>
         <!--Settings-->
         <scene sceneID="Dce-MW-sHy">
@@ -432,7 +378,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EPJ-Ot-yvf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1350" y="1830"/>
+            <point key="canvasLocation" x="-1519.5" y="2078.25"/>
         </scene>
         <!--Chats-->
         <scene sceneID="K0r-rt-R8u">
@@ -473,5 +419,15 @@
             <point key="canvasLocation" x="-1350" y="-460.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="e1" width="612" height="1136"/>
+        <image name="ear1" width="612" height="1136"/>
+        <image name="eyebrow1" width="612" height="1136"/>
+        <image name="fh11" width="612" height="1136"/>
+        <image name="h2" width="1224" height="2272"/>
+        <image name="l1" width="612" height="1136"/>
+        <image name="mh1" width="612" height="1136"/>
+        <image name="nose1" width="612" height="1136"/>
+    </resources>
     <color key="tintColor" red="1" green="0.50217481019999999" blue="0.0020682545409999998" alpha="1" colorSpace="calibratedRGB"/>
 </document>
